@@ -1,0 +1,23 @@
+li {
+  grid-column-start: auto;
+  grid-column-end: auto;
+  grid-row-start: auto;
+  grid-row-end: auto;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date {
+  font-size: 10px;
+}
+
+.note {
+  font-size: 14px;
+}
+.title {
+  font-size: 20px;
+}
