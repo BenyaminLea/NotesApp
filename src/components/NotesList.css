@@ -5,8 +5,14 @@ ul {
   column-gap: 5px;
   row-gap: 5px;
   list-style-type: none;
-  margin-left: 100px;
   margin-top: 50px;
   padding: 0;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: 75%;
   align-items: center;
 }

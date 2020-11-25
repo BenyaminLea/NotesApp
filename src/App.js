@@ -17,11 +17,23 @@ class App extends React.Component {
     });
   }
 
+  handleOnDeleteNote(oldNote) {
+    if (window.confirm("Are you sure you want to delete this note?")) {
+      const updatedList = this.state.notes.filter(
+        (note) => note.dateCreated !== Number(oldNote)
+      );
+      this.setState({ notes: updatedList });
+    }
+  }
+
   render() {
     return (
       <div className="main">
         <AddNoteForm onAddNote={(newNote) => this.handleOnAddNote(newNote)} />
-        <NotesList notes={this.state.notes} />
+        <NotesList
+          notes={this.state.notes}
+          onDeleteNote={(oldNote) => this.handleOnDeleteNote(oldNote)}
+        />
       </div>
     );
   }
