@@ -1,3 +1,5 @@
+App deployed to Netlify : https://silly-pasteur-46fabc.netlify.app
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
