@@ -9,6 +9,11 @@ class NoteItem extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
+      title: this.props.title,
+      note: this.props.note,
+      dateReadable: this.props.dateReadable,
+      dateUpdated: "",
+      updated: false,
     };
   }
   onDelete(event) {
@@ -22,6 +27,26 @@ class NoteItem extends React.Component {
     this.setState({ isOpen: false });
   }
 
+  handleNoteChange(event) {
+    let date = new Date().toString();
+    date = date.slice(4, 10) + date.slice(15, 21);
+    this.setState({
+      note: event.target.value,
+      dateUpdated: date,
+      updated: true,
+    });
+  }
+
+  handleTitleChange(event) {
+    let date = new Date().toString();
+    date = date.slice(4, 10) + date.slice(15, 21);
+    this.setState({
+      title: event.target.value,
+      dateUpdated: date,
+      updated: true,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -32,9 +57,12 @@ class NoteItem extends React.Component {
           >
             Delete
           </button>
-          <div className="title">{this.props.title}</div>
-          <div className="date">{this.props.dateReadable}</div>
-          <div className="note">{this.props.note}</div>
+          <div className="title">{this.state.title}</div>
+          <div className="note">{this.state.note}</div>
+          <div className="date">Created : {this.state.dateReadable}</div>
+          <div className={this.state.updated ? "date" : "hidden"}>
+            Updated : {this.state.dateUpdated}
+          </div>
         </li>
         <Modal
           isOpen={this.state.isOpen}
@@ -42,8 +70,8 @@ class NoteItem extends React.Component {
           style={{
             overlay: { backgroundColor: "grey" },
             content: {
-              width: "100px",
-              height: "100px",
+              width: "300px",
+              height: "300px",
               top: "25%",
               left: "25%",
               right: "auto",
@@ -52,9 +80,27 @@ class NoteItem extends React.Component {
           }}
         >
           <button onClick={() => this.onCloseModal()}>Close</button>
-          <div className="title">{this.props.title}</div>
-          <div className="date">{this.props.dateReadable}</div>
-          <div className="note">{this.props.note}</div>
+          <div>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="A title for your note?"
+              value={this.state.title}
+              onChange={(event) => this.handleTitleChange(event)}
+            />
+          </div>
+          <div>
+            <textarea
+              type="text"
+              name="note"
+              id="note"
+              required
+              placeholder="Your note ..."
+              value={this.state.note}
+              onChange={(event) => this.handleNoteChange(event)}
+            />
+          </div>
         </Modal>
       </div>
     );
